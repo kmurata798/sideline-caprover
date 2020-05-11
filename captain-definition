@@ -6,7 +6,7 @@
     "RUN mkdir -p /usr/src/app",
     "WORKDIR /usr/src/app",
     "COPY ./sideline/ /usr/src/app",
-    "RUN cd /sideline",
+    "RUN cd sideline/",
     "RUN pip install -r requirements.txt",
     "COPY ./utils/ /usr/src/utils",
     "EXPOSE 80",
