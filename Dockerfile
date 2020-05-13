@@ -169,7 +169,7 @@ RUN pwd
 
 # Server
 # Expose port 80
-EXPOSE 8080 80 
+EXPOSE 8080 80
 
 # STOPSIGNAL sets the system call signal that will be sent to the container to exit. 
 # It allows me to override the default signal sent to the container if I wanted to.
