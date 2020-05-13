@@ -1,13 +1,13 @@
-FROM library/python:3.7-alpine as base
+# FROM library/python:3.7-alpine as base
 
-# section 1/2: INSTALL DEPENDENCIES
-FROM base as builder
+# # Section 1/2: INSTALL DEPENDENCIES
+# FROM base as builder
 
-RUN mkdir /code
-WORKDIR /code
-RUN apk --no-cache --quiet add gcc make g++ bash git openssh \
-    curl build-base libffi-dev python-dev py-pip \
-    jpeg-dev zlib-dev libsass-dev
+# RUN mkdir /code
+# WORKDIR /code
+# RUN apk --no-cache --quiet add gcc make g++ bash git openssh \
+#         curl build-base libffi-dev python-dev py-pip \
+#         jpeg-dev zlib-dev libsass-dev
 
 # # Install pillow globally.
 # ENV LIBRARY_PATH=/lib:/usr/lib
@@ -16,10 +16,10 @@ RUN apk --no-cache --quiet add gcc make g++ bash git openssh \
 # COPY requirements.txt /requirements.txt
 
 # # Install project dependencies before copying the rest of the codebase.
-# RUN python -m pip install --install-option="--prefix=/app" -r /requirements.txt
+# RUN python -m pip install -r /requirements.txt
 
 
-# # part 2
+# # Section 2/2:
 
 # FROM base
 # COPY --from=builder /code /usr/local
@@ -55,8 +55,19 @@ RUN apk --no-cache --quiet add gcc make g++ bash git openssh \
 # # Run a startup script in the specified directory.
 # CMD sh /usr/src/app/deploy/run.sh
 
+FROM library/python:3.7-alpine
+
+RUN mkdir /code
+WORKDIR /code
+
+RUN apk --no-cache --quiet add gcc make g++ bash git openssh \
+        sqlite curl build-base libffi-dev python-dev py-pip \
+        jpeg-dev zlib-dev libsass-dev
+
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 RUN pip install Pillow
 COPY ./ /code/
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+
+EXPOSE 8080 80 443
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8080"]
