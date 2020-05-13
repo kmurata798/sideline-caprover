@@ -125,7 +125,14 @@
 # ==============================================================================
 
 FROM python:3.7
+
 # Install Python and Package Libraries
+# When building a docker image, I should always try to keep it as small as possible. So everytime I build an image installing a package, 
+# removes the cache to keep it small. The consequence is that you must run apt-get update if you want to install any package.
+
+# COMMANDS:
+# apt-get autoclean only removes files that can no longer be downloaded and are virtually useless
+# apt-get autoremove removes orphaned packages which are not longer needed from the system, but doesn't purges them. apt-get purge (any configuration files are deleted too)
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
 RUN apt-get install -y \
     libffi-dev \
@@ -161,7 +168,7 @@ RUN ls
 RUN pwd
 
 # Server
-EXPOSE 8000 80 443
+EXPOSE 8080 80 443
 
 # STOPSIGNAL sets the system call signal that will be sent to the container to exit. 
 # It allows me to override the default signal sent to the container if I wanted to.
