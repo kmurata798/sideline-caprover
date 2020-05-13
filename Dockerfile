@@ -1,9 +1,11 @@
-# FROM library/python:3.7-alpine as base
-# FROM base as builder
+FROM library/python:3.7-alpine as base
+FROM base as builder
 
-# RUN mkdir /myproject
-# WORKDIR /myproject
-# RUN apk update && apk upgrade && apk add --no-cache make g++ bash git openssh postgresql-dev curl
+RUN mkdir /code
+WORKDIR /code
+RUN apk --no-cache --quiet add gcc make g++ bash git openssh \
+    curl build-base libffi-dev python-dev py-pip \
+    jpeg-dev zlib-dev libsass-dev
 
 # # Install pillow globally.
 # ENV LIBRARY_PATH=/lib:/usr/lib
@@ -18,7 +20,7 @@
 # # part 2
 
 # FROM base
-# COPY --from=builder /myproject /usr/local
+# COPY --from=builder /code /usr/local
 
 # RUN apk --no-cache --quiet add libpq
 
@@ -51,11 +53,8 @@
 # # Run a startup script in the specified directory.
 # CMD sh /usr/src/app/deploy/run.sh
 
-FROM python:3.7-alpine
-ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
+RUN pip install Pillow
 COPY ./ /code/
-CMD ["python", "mysite/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
