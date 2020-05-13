@@ -138,19 +138,40 @@ RUN apt-get install -y \
     zlib1g-dev \
     net-tools \
     vim
+
+# The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg 
+# <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs a warning.
+
+# If an ARG instruction has a default value and if there is no value passed at build-time, the builder uses the default.
+# ==================================================================================================
+
 # Project Files and Settings
 ARG PROJECT=myproject
 
 # setting /var/www/myproject/ on the server as the equivalent to my Django project’s root directory
 ARG PROJECT_DIR=/var/www/${PROJECT}
+# ==================================================================================================
 
 RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+COPY . $PROJECT_DIR
+RUN ls
+RUN pwd
 
 # Server
-EXPOSE 8000
-STOPSIGNAL SIGINT
-ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+EXPOSE 8000 80 443
+
+# STOPSIGNAL sets the system call signal that will be sent to the container to exit. 
+# It allows me to override the default signal sent to the container if I wanted to.
+# SIGTERM is the default signal sent to containers to stop them:
+# STOPSIGNAL SIGINT
+
+# ENTRYPOINT ["python", "manage.py"]
+
+# Healthcheck will check that the following command works or not: 0 == success, 1 == fail
+HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
+# CMD ["runserver", "0.0.0.0:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD sh /var/www/myproject/deploy/run.sh
