@@ -140,7 +140,10 @@ RUN apt-get install -y \
     vim
 # Project Files and Settings
 ARG PROJECT=myproject
+
+# setting /var/www/myproject/ on the server as the equivalent to my Django project’s root directory
 ARG PROJECT_DIR=/var/www/${PROJECT}
+
 RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 COPY requirements.txt .

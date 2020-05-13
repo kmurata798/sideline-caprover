@@ -19,9 +19,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker_tutorial_django
+    image: django-server
+
+    # Allows me to run an interactive shell to interact with my server
+    # ===============
     stdin_open: true
     tty: true
+    # ===============
+    
     volumes:
       - .:/var/www/myproject
     ports:
