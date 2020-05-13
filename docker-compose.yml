@@ -1,0 +1,28 @@
+# version: "3.7"
+# services:
+#     web:
+#         build: .
+#         ports:
+#             - "8000:80"
+#         depends_on:
+#             - db
+#     db:
+#         image: "mcr.microsoft.com/mssql/server"
+#         environment:
+#             SA_PASSWORD: "Testing1234"
+#             ACCEPT_EULA: "Y"
+
+version: "3.7"
+services:
+  django:
+    container_name: testing-django
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker_tutorial_django
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/var/www/myproject
+    ports:
+      - "8000:8000"
