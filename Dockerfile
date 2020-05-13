@@ -1,4 +1,6 @@
 FROM library/python:3.7-alpine as base
+
+# section 1/2: INSTALL DEPENDENCIES
 FROM base as builder
 
 RUN mkdir /code
