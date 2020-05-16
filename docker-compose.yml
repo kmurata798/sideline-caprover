@@ -2,12 +2,11 @@ version: "3.7"
 services:
   django:
     container_name: testing-django
-    build:
-      context: .
-      # dockerfile: Dockerfile
+    build: .
     image: django-server
 
     # Allows me to run an interactive shell to interact with my server
+    # These lines of code let us run an interactive terminal when running the 'Docker-compose up' command
     # ===============
     stdin_open: true
     tty: true
