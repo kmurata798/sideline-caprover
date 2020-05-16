@@ -1,4 +1,5 @@
 <!-- Dockerized project README -->
+### This portion of the README is for users who are using docker who want to build and run a Docker container which holds the Django project.
 ## How to Build (WIP)
 This project uses Docker.  
 
@@ -12,6 +13,7 @@ To build and run the application, simply run this command after entering the pro
 - [ ] Deploy on caprover
 
 <!-- Base project README -->
+### This portion of the README is for users not using docker who want to test out the Django project.
 # sideline (Team Project)
 ![Sideline image](https://henricolibrary.org/images/easyblog_articles/129/b2ap3_large_20190712-hobbies-blog.jpg)
 
