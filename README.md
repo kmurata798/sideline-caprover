@@ -6,7 +6,7 @@ To build and run the application, simply run this command after entering the pro
 ``` docker-compose up ```
 
 ## Changelog
-- [x] Implement the project
+- [x] Implement my Sideline Django project which uses SQLite as a database
 - [x] Write the docker-compose.yml file
 - [ ] Fix Caprover error occurring with Digital Ocean Droplet IP Address
 - [ ] Deploy on caprover
@@ -35,7 +35,7 @@ All dependencies are listed in the Pipfile in the repository.
 Clone this repository   (Don't include the $. This symbol indicates that you need to write this command in the commandline in this repository):
 
 ```
-$ git clone https://github.com/TasfiaAddrita/sideline.git
+$ git clone https://github.com/kmurata798/sideline-caprover–
 ```
 
 Traverse into the this repository:
