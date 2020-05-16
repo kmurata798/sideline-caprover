@@ -1,7 +1,7 @@
 <!-- Dockerized project README -->
 ## How to Build (WIP)
 This project uses Docker.  
-To build and run the application, simply run this command after entering the project directory:
+To build and run the application, simply run this command after entering the project directory: 
 ``` docker-compose up ```
 
 ## Changelog
