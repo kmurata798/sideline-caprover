@@ -1,5 +1,8 @@
 <!-- Dockerized project README -->
-### This portion of the README is for users who are using docker who want to build and run a Docker container which holds the Django project.
+### This portion of the README is for users who are using docker who want to build and run a Docker container which holds the Django project.  
+
+### Read my blog post for more information on what is going on in this project:
+https://medium.com/@kmurata798/dockering-an-sqlite-django-project-75160855c5bf
 ## How to Build (WIP)
 This project uses Docker.  
 
