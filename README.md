@@ -1,3 +1,16 @@
+<!-- Dockerized project README -->
+## How to Build (WIP)
+This project uses Docker. 
+To build and run the application, simply run this command:
+``` docker-compose up ```
+
+## Changelog
+- [x] Implement the project
+- [x] Write the docker-compose.yml file
+- [ ] Fix Caprover error occurring with Digital Ocean Droplet IP Address
+- [ ] Deploy on caprover
+
+<!-- Base project README -->
 # sideline (Team Project)
 ![Sideline image](https://henricolibrary.org/images/easyblog_articles/129/b2ap3_large_20190712-hobbies-blog.jpg)
 
